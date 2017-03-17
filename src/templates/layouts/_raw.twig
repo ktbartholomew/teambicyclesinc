@@ -3,9 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>{% block htmlTitle %}{% endblock %}</title>
+    <link rel="shortcut icon" href="{{ site.theme.uri }}/favicon.ico">
+    <link rel="stylesheet" href="{{ site.theme.uri }}/css/main.css">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900"/></noscript>
   </head>
   <body class="{% block bodyClasses %}{% endblock %}">
     {% block body %}{% endblock %}
     {% block bodyEnd %}{% endblock %}
+    <script async>
+      (function (d,c,l,p,s,u) {
+        var t = d[c](l);t.href = u;try {d[c](l).relList.supports(p);t.rel = p;
+        t.as = 'style';t.addEventListener(function(){this.rel=s;});} catch (e) {
+        t.rel = s;}d.head.appendChild(t);
+      })(document, 'createElement', 'link', 'preload', 'stylesheet', 'https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900');
+    </script>
   </body>
 </html>

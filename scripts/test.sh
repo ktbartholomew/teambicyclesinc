@@ -11,34 +11,11 @@ usage() {
 }
 
 up() {
-  if [ "$(docker network ls -q -f name=teambicyclesinc)" == "" ];then
-    docker network create teambicyclesinc || true
-  fi
-
-  if [ "$(docker ps -q -f name=teambicyclesinc-mysql)" == "" ];then
-    docker run -d \
-    --net teambicyclesinc \
-    --name teambicyclesinc-mysql \
-    --env MYSQL_ROOT_PASSWORD=password \
-    --env MYSQL_DATABASE=wordpress \
-    mysql:5.7
-  fi
-
-  if [ "$(docker ps -q -f name=teambicyclesinc-wordpress)" == "" ];then
-    docker run -d \
-    --net teambicyclesinc \
-    --name teambicyclesinc-wordpress \
-    -p 8080:80 \
-    -v ${scriptroot}/../test/wp-config.php:/var/www/html/wp-config.php \
-    -v ${scriptroot}/../dist/:/var/www/html/wp-content/themes/theme \
-    wordpress:latest
-  fi
+  docker stack up -c ${scriptroot}/../docker-compose.yml teambicyclesinc
 }
 
 down() {
-  docker rm -f teambicyclesinc-wordpress
-  docker rm -f teambicyclesinc-mysql
-  docker network rm teambicyclesinc
+  docker stack rm teambicyclesinc
 }
 
 if [ ${1:-""} == "" ]; then

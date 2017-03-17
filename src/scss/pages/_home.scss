@@ -1,0 +1,126 @@
+body.home {
+  .home-block {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    height: 370px;
+
+    .image {
+      flex: 1 1 50%;
+      img {
+        display: inline-block;
+        height: 370px;
+        width: auto;
+        margin: 0;
+      }
+    }
+
+    .content {
+      flex: 1 1 50%;
+      padding: 2em;
+
+      h2 {
+        font-weight: 900;
+        font-size: 2.75rem;
+        letter-spacing: 0.03em;
+        line-height: 1;
+        margin: 0;
+        text-transform: uppercase;
+
+        small {
+          font-size: 50%;
+          line-height: 2;
+          vertical-align: top;
+        }
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
+
+      .btn {
+        background-color: shade(white, 5%);
+        border-radius: 4px;
+        border: solid 1px shade(white, 10%);
+        box-shadow: 0px 2px 4px rgba(0,0,0,0.22);
+        display: inline-block;
+        padding: 0.5em 1em;
+        transition: background-color 0.1s ease-in-out;
+
+        &:hover, &:focus {
+          background-color: white;
+          text-decoration: none;
+        }
+      }
+
+      * {
+        z-index: 2;
+      }
+
+      &:before {
+        background: rgba(0,0,0,0.08);
+        display: block;
+        content: '';
+        width: 60px;
+        height: 370px;
+        position: absolute;
+        top: 0;
+        left: 30%;
+        transform: skewX(20deg);
+        z-index: 1;
+      }
+
+      &:after {
+        background: rgba(0,0,0,0.08);
+        display: block;
+        content: '';
+        width: 60px;
+        height: 370px;
+        position: absolute;
+        top: 0;
+        left: calc(30% + 90px);
+        transform: skewX(20deg);
+        z-index: 1;
+      }
+    }
+
+    &.image-left {
+      .image {
+        text-align: right;
+      }
+
+      .content:before, .content:after {
+        transform: skewX(-20deg);
+      }
+    }
+
+    &.blue .content {
+      background: $club-blue;
+      color: white;
+
+      .btn {
+        color: $club-blue;
+      }
+    }
+
+    &.red .content {
+      background: $club-red;
+      color: white;
+
+      .btn {
+        color: $club-red;
+      }
+    }
+
+    &.gray .content {
+      background: desaturate($club-blue, 90%);
+      color: white;
+
+      .btn {
+        color: desaturate($club-blue, 90%);
+      }
+    }
+  }
+}

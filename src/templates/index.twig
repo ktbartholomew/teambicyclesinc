@@ -1,16 +1,35 @@
 {% extends "layouts/_base.twig" %}
 
-
+{% block bodyClasses %}home{% endblock %}
 {% block content %}
-  <h1>{{ site.title }}</h1>
-
-  {% for post in posts %}
-    <article>
-      <h2>{{ post.title }}</h2>
-      {{ post.date }}
-      <div class="article-body">
-        {{ post.post_content }}
-      </div>
-    </article>
-  {% endfor %}
+  <section class="home-block blue image-left">
+    <div class="image">
+      <img src="{{ site.theme.uri }}/img/three-riders-in-jerseys.jpg" alt="Team Bicycles Inc racer on a podium">
+    </div>
+    <div class="content">
+      <h2>Ride With Us</h2>
+      <p>Members of Team Bicycles Inc participate in many events throughout the year, from casual social rides to competitive races. We have rides for every skill level&mdash;anyone can ride along!</p>
+      <p><a class="btn" href="">Join us for a ride</a></p>
+    </div>
+  </section>
+  <section class="home-block red">
+    <div class="content">
+      <h2>Our History</h2>
+      <p>Team Bicycles Inc has had many faces and names over the years</p>
+      <p><a class="btn" href="">Learn how it all started</a></p>
+    </div>
+    <div class="image">
+      <img src="{{ site.theme.uri }}/img/vintage-riders.jpg" alt="Team Bicycles Inc racer on a podium">
+    </div>
+  </section>
+  <section class="home-block gray image-left">
+    <div class="image">
+      <img src="{{ site.theme.uri }}/img/wnc-podium.jpg" alt="Team Bicycles Inc racer on a podium">
+    </div>
+    <div class="content">
+      <h2>Races <small>&amp;</small> Events</h2>
+      <p>Members of Team Bicycles Inc participate in many events throughout the year, from competitive races to casual social rides.</p>
+      <p><a class="btn" href="">Join us at an event</a></p>
+    </div>
+  </section>
 {% endblock %}

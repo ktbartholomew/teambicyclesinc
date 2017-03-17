@@ -3,3 +3,4 @@ npm-debug.log
 dist
 src/vendor
 node_modules
+.DS_Store

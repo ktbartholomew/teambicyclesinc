@@ -1,0 +1,20 @@
+body, html {
+  background: $body-color;
+  color: $text-color;
+  font-family: 'Lato', Arial, sans-serif;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+body * {
+  box-sizing: border-box;
+  position: relative;
+}
+
+.container {
+  display: block;
+  margin: 0 auto;
+  max-width: 1440px;
+  width: 90%;
+}
