@@ -1,0 +1,11 @@
+@mixin container() {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@mixin container-inner() {
+  margin: 0 auto;
+  max-width: 1440px;
+  width: 90%;
+}

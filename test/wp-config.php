@@ -17,7 +17,7 @@ define('LOGGED_IN_SALT',   'insecure');
 define('NONCE_SALT',       'insecure');
 
 $table_prefix  = 'wp_';
-define('WP_DEBUG', false);
+define('WP_DEBUG', true);
 
 if ( !defined('ABSPATH') )
   define('ABSPATH', dirname(__FILE__) . '/');

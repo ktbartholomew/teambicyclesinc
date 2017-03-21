@@ -1,4 +1,8 @@
 body.home {
+  .home-blocks {
+    @include container-inner();
+  }
+
   .home-block {
     display: -webkit-flex;
     display: -moz-flex;

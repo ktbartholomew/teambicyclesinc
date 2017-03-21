@@ -15,7 +15,7 @@ services:
       - mysql-data:/var/lib/mysql
 
   frontend:
-    image: wordpress:latest
+    image: wordpress:4.7.3-php7.1-apache
     networks:
       - teambicyclesinc
     ports:
@@ -23,9 +23,11 @@ services:
     volumes:
       - ./test/wp-config.php:/var/www/html/wp-config.php
       - ./dist/:/var/www/html/wp-content/themes/theme
+      - wp-uploads:/var/www/html/wp-content/uploads
 
 networks:
   teambicyclesinc:
 
 volumes:
   mysql-data:
+  wp-uploads:

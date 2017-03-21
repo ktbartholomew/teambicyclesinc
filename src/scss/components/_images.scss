@@ -1,0 +1,23 @@
+img {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  max-width: 100%;
+  width: auto;
+}
+
+.wp-caption {
+  margin: 0 auto 2em auto;
+
+  p + & {
+    margin-top: 2em;
+  }
+
+  .wp-caption-text {
+    color: tint($text-color, 30%);
+    font-size: 14px;
+    font-style: italic;
+    margin-top: 0.5em;
+    text-align: center;
+  }
+}

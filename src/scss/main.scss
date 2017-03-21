@@ -1,8 +1,13 @@
 @import "helpers/color";
+@import "helpers/container";
 @import "variables/color";
 
 @import "components/body";
+@import "components/images";
 @import "components/links";
+@import "components/type";
 @import "components/site-header";
+@import "components/site-footer";
 
 @import "pages/home";
+@import "pages/page";
