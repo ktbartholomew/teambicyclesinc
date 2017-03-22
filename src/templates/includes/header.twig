@@ -13,10 +13,10 @@
         <a href="">Photos</a>
       </li>
       <li{% if request.url.pathname starts with '/calendar' %} class="active"{% endif %}>
-        <a href="">Event Calendar</a>
+        <a href="/calendar">Calendar</a>
       </li>
       <li{% if request.url.pathname starts with '/faqs' %} class="active"{% endif %}>
-        <a href="">FAQ<small>s</small></a>
+        <a href="/faqs">FAQ<small>s</small></a>
       </li>
       <li class="attention">
         <a href="">Join today</a>

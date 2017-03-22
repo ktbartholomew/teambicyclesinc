@@ -1,12 +1,41 @@
 body.page {
   article {
-    max-width: 45em;
     margin: 0 auto;
 
-    .title {
-      font-weight: 900;
-      text-align: center;
-      text-transform: uppercase;
+    .header {
+      background-size: cover;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      height: 30vw;
+      margin-bottom: 2rem;
+
+      &:before {
+        background-color: rgba(shade($club-blue, 10%), 0.8);
+        content: '';
+        display: block;
+        left: 0;
+        -webkit-mix-blend-mode: multiply;
+        mix-blend-mode: multiply;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+      }
+
+      .title {
+        color: white;
+        font-weight: 900;
+        font-size: 3.25rem;
+        padding-top: 11vw;
+        text-align: center;
+        text-shadow: 0px 0.06em 0px rgba(black, 0.4);
+        text-transform: uppercase;
+      }
+    }
+
+    .content {
+      max-width: 45em;
+      margin: 0 auto;
     }
   }
 }

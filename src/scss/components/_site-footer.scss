@@ -20,7 +20,7 @@
     border-color: $club-red transparent transparent transparent;
   }
 
-  .sponsors {
+  .sponsors, .platforms {
     @include container-inner();
 
     h3 {
@@ -55,6 +55,10 @@
         }
       }
     }
+  }
+
+  .platforms {
+    margin-top: 40px;
   }
 
   .copyright {

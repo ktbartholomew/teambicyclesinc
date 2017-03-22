@@ -16,5 +16,10 @@ if (is_front_page()) {
   }
   Timber::render('templates/index.twig', $context);
 } else {
+
+  if($context['page']->header_background_image) {
+    $context['page']->header_background_image = new Image($context['page']->header_background_image);
+  }
+
   Timber::render('templates/page.twig', $context);
 }
