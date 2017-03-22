@@ -2,10 +2,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   margin: 0;
   text-transform: uppercase;
-
-  p + & {
-    // margin-top: 2em;
-  }
 }
 
 h1 {
@@ -21,6 +17,14 @@ h3 {
 }
 
 h4 {
+  color: $club-red;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  text-transform: none;
+}
+
+h5 {
+  color: tint($text-color, 20%);
   font-weight: 700;
   margin-bottom: 0.5em;
   text-transform: none;
@@ -32,12 +36,28 @@ p {
   line-height: 1.4;
 }
 
-p + p {
-  // margin-top: 2em;
+strong, b {
+  font-weight: 700;
+
+  em, i {
+    font-style: italic;
+  }
+}
+
+em, i {
+  font-style: italic;
+
+  strong, b {
+    font-weight: 700;
+  }
 }
 
 ul {
   margin: 0;
   margin-bottom: 2em;
   padding-left: 1.15em;
+
+  li + li {
+    margin-top: 0.5em;
+  }
 }

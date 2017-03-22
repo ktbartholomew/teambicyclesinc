@@ -5,4 +5,4 @@ $flag-blue: #002868;
 $club-red: #bf0a30;
 $club-yellow: #fcfa0e;
 
-$link-color: $club-blue;
+$link-color: saturate(tint($club-blue, 25%), 20%);

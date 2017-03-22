@@ -11,7 +11,7 @@
     <h1 class="title">{{ page.title }}</h1>
   </div>
   <div class="content">
-    {{ page.content }}
+    {% block pageContent %}{{ page.content }}{% endblock %}
   </div>
 </article>
 {% endblock %}

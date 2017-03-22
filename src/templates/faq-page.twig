@@ -1,0 +1,20 @@
+{% extends "page.twig" %}
+
+{% block bodyClasses %}page faq-page{% endblock %}
+{% block pageContent %}
+  <div class="anchor-links">
+    <ul>
+    {% for faq in faqs %}
+      <li>
+        <a href="#{{ faq.post_name }}">{{ faq.post_title }}</a>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+  {% for faq in faqs %}
+    <div class="faq" id="{{ faq.post_name }}">
+      <h3>{{ faq.post_title }}</h3>
+      {{ faq.content }}
+    </div>
+  {% endfor %}
+{% endblock %}

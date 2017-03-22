@@ -31,7 +31,7 @@ chokidar.watch(path.resolve(__dirname, '../src/'), {ignored: /src\/vendor/})
       });
     };
 
-    if (filePath.match(/\.(php|twig)$/)) {
+    if (filePath.match(/\.(php|twig|css|png|jpg|gif)$/)) {
       return copyTemplates();
     }
 

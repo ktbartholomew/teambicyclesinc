@@ -1,26 +1,30 @@
 <header class="site-header">
   <div class="logo">
-    <img src="{{ site.theme.uri }}/img/tbi-logo-small.png" alt="Team Bicycles Inc Logo" width="160">
+    <a href="{{ site.home }}">
+      <img src="{{ site.theme.uri }}/img/tbi-logo-small.png" alt="Team Bicycles Inc Logo" width="160">
+    </a>
   </div>
-
   <div class="nav">
     <ul>
-      <li{% if request.url.pathname == '/' %} class="active"{% endif %}><a href="/">Home</a></li>
-      <li{% if request.url.pathname starts with '/about-us' %} class="active"{% endif %}>
-        <a href="/about-us/">About Us</a>
-      </li>
-      <li{% if request.url.pathname starts with '/photos' %} class="active"{% endif %}>
-        <a href="">Photos</a>
-      </li>
-      <li{% if request.url.pathname starts with '/calendar' %} class="active"{% endif %}>
-        <a href="/calendar">Calendar</a>
-      </li>
-      <li{% if request.url.pathname starts with '/faqs' %} class="active"{% endif %}>
-        <a href="/faqs">FAQ<small>s</small></a>
-      </li>
-      <li class="attention">
-        <a href="">Join today</a>
-      </li>
+      {% for item in nav.get_items %}
+        {% set navClasses = '' %}
+        {% if item.slug == 'join' %}
+          {% set navClasses = 'attention' %}
+        {% else %}
+          {% if item.current %}
+            {% set navClasses = 'active' %}
+          {% endif %}
+        {% endif %}
+        <li{% if navClasses %} class="{{ navClasses }}"{% endif %}>
+          {% if item.slug == "home" %}
+          <a href="/">
+          {% else %}
+          <a href="/{{ item.slug }}">
+          {% endif %}
+          {{ item.nav_title|default(item.title) }}
+          </a>
+        </li>
+      {% endfor %}
     </ul>
   </div>
 </header>

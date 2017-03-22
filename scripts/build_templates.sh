@@ -12,7 +12,7 @@ fi
 
 if [ ! -d ${scriptroot}/../src/vendor ];then
   docker run --rm \
-  -v ${scriptroot}/../src:/app composer install
+  -v ${scriptroot}/../src:/app composer install -o
 fi
 
 cp -a ${scriptroot}/../src/ ${scriptroot}/../dist/

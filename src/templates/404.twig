@@ -1,11 +1,9 @@
 {% extends "layouts/_base.twig" %}
 
-{% block bodyClasses %}page{% endblock %}
+{% block bodyClasses %}page-404{% endblock %}
 {% block content %}
 <article class="{{ page.class }}">
-  <h1 class="title">Page not found</h1>
-  <div class="content">
+    <h1 class="title">Page not found</h1>
     <p>Sorry, we couldn’t find the page you were looking for. It may have moved or been removed from the site.</p>
-  </div>
 </article>
 {% endblock %}
