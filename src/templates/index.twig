@@ -3,35 +3,26 @@
 {% block bodyClasses %}home{% endblock %}
 {% block content %}
   <div class="home-blocks">
-    <section class="home-block blue image-left">
-      <div class="image">
-        <img src="{{ page.block_1_image.src }}" alt="Three Team Bicycles Inc riders at a bike rally">
-      </div>
-      <div class="content">
-        <h2>{{ page.block_1_title }}</h2>
-        <p>{{ page.block_1_text }}</p>
-        <p><a class="btn" href="/calendar">{{ page.block_1_link_text }}</a></p>
-      </div>
-    </section>
-    <section class="home-block red">
-      <div class="content">
-        <h2>Our History</h2>
-        <p>Team Bicycles Inc has gone by several names and seen many faces over the years. Learn more about our club’s history!</p>
-        <p><a class="btn" href="/about-us/">Learn about our team</a></p>
-      </div>
-      <div class="image">
-        <img src="{{ site.theme.uri }}/img/vintage-riders.jpg" alt="Team Bicycles Inc racer on a podium">
-      </div>
-    </section>
-    <section class="home-block gray image-left">
-      <div class="image">
-        <img src="{{ site.theme.uri }}/img/wnc-podium.jpg" alt="Team Bicycles Inc racer on a podium">
-      </div>
-      <div class="content">
-        <h2>Event Photos</h2>
-        <p>See our team members in action at the various events and races we attend.</p>
-        <p><a class="btn" href="/photos">See our photos</a></p>
-      </div>
-    </section>
+    {% for block in page.blocks %}
+      <section class="home-block {{ block.color }} image-{{ block.image_on }}">
+        {% if block.image_on == 'left' %}
+        <div class="image">
+          <img src="{{ block.image.url }}" alt="{{ block.image.alt }}">
+        </div>
+        {% endif %}
+        <div class="content">
+          <h2>{{ block.title }}</h2>
+          {{ block.text }}
+          <p>
+            <a class="btn" href="{{ function('get_permalink', block.link_to.ID) }}">{{ block.link_text }}</a>
+          </p>
+        </div>
+        {% if block.image_on == 'right' %}
+        <div class="image">
+          <img src="{{ block.image.url }}" alt="{{ block.image.alt }}">
+        </div>
+        {% endif %}
+      </section>
+    {% endfor %}
   </div>
 {% endblock %}
