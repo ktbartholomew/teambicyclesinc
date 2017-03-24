@@ -1,0 +1,30 @@
+{% extends "page.twig" %}
+
+{% block bodyClasses %}page calendar-page{% endblock %}
+{% block pageContent %}
+  <div class="page-content">{{ page.content }}</div>
+  <ol class="events">
+    {% for event in events %}
+    <li class="event">
+      <h3 class="title">{{ event.summary }}</h3>
+      <div class="calendar-link">
+        <a href="{{ event.htmlLink }}" target="_blank">
+          <img src="{{ site.theme.uri }}/img/calendar.png" alt="Calendar">
+        </a>
+      </div>
+      {% if event.start.dateTime %}
+        <time class="time" datetime="{{ event.start.dateTime|date('c') }}">
+          {{ event.start.dateTime|date("l, F j") }} at {{ event.start.dateTime|date("g:ia") }}
+        </time>
+      {% else %}
+        <time class="time" datetime="{{ event.start.date|date('c') }}">
+        {{ event.start.date|date("l, F j") }}
+        </time>
+      {% endif %}
+      <div class="description">
+        {{ event.description|wpautop|linkify }}
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+{% endblock %}

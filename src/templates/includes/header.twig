@@ -6,25 +6,19 @@
   </div>
   <div class="nav">
     <ul>
-      {% for item in nav.get_items %}
-        {% set navClasses = '' %}
-        {% if item.slug == 'join' %}
-          {% set navClasses = 'attention' %}
-        {% else %}
-          {% if item.current %}
-            {% set navClasses = 'active' %}
-          {% endif %}
-        {% endif %}
+      {%- for item in nav.get_items -%}
+        {%- set navClasses = '' -%}
+        {%- if item.slug == 'join' -%}
+          {%- set navClasses = 'attention' -%}
+        {%- else -%}
+          {%- if item.current -%}
+            {%- set navClasses = 'active' -%}
+          {%- endif -%}
+        {%- endif -%}
         <li{% if navClasses %} class="{{ navClasses }}"{% endif %}>
-          {% if item.slug == "home" %}
-          <a href="/">
-          {% else %}
-          <a href="/{{ item.slug }}">
-          {% endif %}
-          {{ item.nav_title|default(item.title) }}
-          </a>
+          <a href="{{ item.url }}">{{ item.title }}</a>
         </li>
-      {% endfor %}
+      {%- endfor -%}
     </ul>
   </div>
 </header>

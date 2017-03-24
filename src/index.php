@@ -2,11 +2,15 @@
 
 namespace Theme;
 
-use \Timber\Timber;
+use Theme\Helpers\Request;
+use Timber\Timber;
+
 
 // This file will be loaded for a number of edge case scenarios for which other
 // template files don't exist. Below we try to identify the edge case and render
 // a page, but default to showing the 404 page.
+
+$requestUrl = Request::getRequestUrl();
 
 if (is_front_page()) {
   new Controllers\Index();
@@ -15,6 +19,11 @@ if (is_front_page()) {
 
 if (is_page() && get_post()->post_name === 'faqs') {
   new Controllers\FAQPage();
+  exit();
+}
+
+if (is_page() && get_post()->post_name === 'calendar') {
+  new Controllers\CalendarPage();
   exit();
 }
 
