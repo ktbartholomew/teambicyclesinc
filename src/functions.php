@@ -7,6 +7,10 @@ use Timber\Timber;
 // Use the composer autoload file for PSR-4 autoloading
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// We depend on the advanced-custom-fields-pro plugin, so let’s make sure it's
+// installed before moving on.
+Helpers\Plugins::ensurePlugins();
+
 // Don't let users edit theme files from the admin portal
 define('DISALLOW_FILE_EDIT', true);
 define('DISALLOW_FILE_MODS', true);

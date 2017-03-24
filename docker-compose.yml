@@ -15,12 +15,13 @@ services:
       - mysql-data:/var/lib/mysql
 
   frontend:
-    image: wordpress:4.7.3-php7.1-apache
+    image: tbi-wordpress
     networks:
       - teambicyclesinc
     environment:
       - GOOGLE_CALENDAR_ID=teambikesinc@gmail.com
       - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - ACF_KEY=${ACF_KEY}
     ports:
       - 8080:80
     volumes:

@@ -6,6 +6,10 @@ WordPress Theme for teambicyclesinc.com
 
 Requires [Docker](https://www.docker.com/) and [Node.js](https://nodejs.org/en/).
 
+1. Set a few environment variables:
+   * `GOOGLE_API_KEY`: a Google APIs API key that has permissions to read the Google Calendar API
+   * `ACF_KEY`: a key to the Pro version of the Advanced Custom Fields plugin
+
 1. Build the theme by populating the `dist/` directory:
 
   ```
