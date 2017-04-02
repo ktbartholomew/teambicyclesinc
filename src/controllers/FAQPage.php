@@ -12,7 +12,7 @@ class FAQPage {
     $context['page'] = new Post();
     $context['faqs'] = Timber::get_posts([
       'post_type' => 'post',
-      'category' => 'faqs',
+      'category_name' => 'faqs',
       'order' => 'ASC',
       'orderby' => 'date'
     ]);
