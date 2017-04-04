@@ -1,6 +1,12 @@
 body.home {
   .home-blocks {
     @include container-inner();
+    overflow: hidden;
+    width: 100%;
+
+    @media (min-width: 1025px) {
+      width: 90%;
+    }
   }
 
   .home-block {
@@ -10,6 +16,7 @@ body.home {
     display: -o-flex;
     display: flex;
     height: 370px;
+    overflow: hidden;
 
     .image {
       flex: 1 1 50%;
@@ -43,6 +50,10 @@ body.home {
 
       p {
         font-size: 1.2rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
 
       .btn {
@@ -65,27 +76,16 @@ body.home {
       }
 
       &:before {
-        background: rgba(0,0,0,0.08);
+        border-left: solid 60px rgba(0,0,0,0.08);
+        border-right: solid 60px rgba(0,0,0,0.08);
+        // background: rgba(0,0,0,0.08);
         display: block;
         content: '';
-        width: 60px;
+        width: 30px;
         height: 370px;
         position: absolute;
         top: 0;
         left: 30%;
-        transform: skewX(20deg);
-        z-index: 1;
-      }
-
-      &:after {
-        background: rgba(0,0,0,0.08);
-        display: block;
-        content: '';
-        width: 60px;
-        height: 370px;
-        position: absolute;
-        top: 0;
-        left: calc(30% + 90px);
         transform: skewX(20deg);
         z-index: 1;
       }
@@ -96,7 +96,7 @@ body.home {
         text-align: right;
       }
 
-      .content:before, .content:after {
+      .content:before {
         transform: skewX(-20deg);
       }
     }
@@ -127,5 +127,46 @@ body.home {
         color: desaturate($club-blue, 90%);
       }
     }
+
+    @media (max-width: 740px) {
+      .image {
+        display: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .content {
+        h2 {
+          font-size: 2.3rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    @media (max-width: 1050px) {
+      height: auto;
+    }
+
+    @media (max-width: 1024px) {
+      width: 100%;
+
+      .content:before {
+        height: 50vw;
+      }
+
+      .image img {
+        display: block;
+        height: 50vw;
+        width: 50vw;
+      }
+    }
+  }
+
+  .site-footer {
+    border-top: none;
+    margin-top: 0;
   }
 }
