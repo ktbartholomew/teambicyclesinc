@@ -19,17 +19,17 @@ services:
     networks:
       - teambicyclesinc
     environment:
-      - DB_NAME=wordpress
-      - DB_USER=root
-      - DB_PASSWORD=password
-      - DB_HOST=db
-      - GOOGLE_CALENDAR_ID=teambikesinc@gmail.com
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - GOOGLE_CALENDAR_ID=${GOOGLE_CALENDAR_ID}
       - GOOGLE_API_KEY=${GOOGLE_API_KEY}
       - ACF_KEY=${ACF_KEY}
     ports:
       - 8080:80
     volumes:
-      - ./test/wp-config.php:/var/www/html/wp-config.php
+      - ./wp-config.php:/var/www/html/wp-config.php
       - ./dist/:/var/www/html/wp-content/themes/theme
       - wp-uploads:/var/www/html/wp-content/uploads
 

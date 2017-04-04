@@ -4,6 +4,7 @@ set -ueo pipefail
 
 scriptroot="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+source ${scriptroot}/../env
 
 usage() {
   echo "usage: test.sh [up|down]"
