@@ -1,21 +1,23 @@
 .site-header {
   @include container-inner();
-  padding-top: 20px;
-  padding-bottom: 20px;
+  width: 100%;
+  padding: 20px 10px;
 
   .logo {
-    display: inline-block;
-    vertical-align: middle;
+    display: block;
+    margin: 0 auto;
+    width: 120px;
 
     img {
       height: auto;
       margin: 0;
-      width: 160px;
+      width: 120px;
     }
   }
 
   .nav {
     display: inline-block;
+    font-size: 0.9rem;
     vertical-align: middle;
 
     ul {
@@ -26,6 +28,7 @@
       li {
         display: inline-block;
         margin-right: -0.25em;
+        margin-top: 0.5em;
 
         a {
           border-bottom-style: solid;
@@ -34,7 +37,7 @@
           color: $club-red;
           display: inline-block;
           font-weight: 900;
-          padding: 0.5rem 1rem;
+          padding: 0.25rem 0.65rem;
           text-transform: uppercase;
           transition: border-color 0.1s ease-in-out;
 
@@ -63,5 +66,31 @@
         }
       }
     }
+  }
+
+  @media (min-width: 710px) {
+    .logo {
+      display: inline-block;
+      vertical-align: middle;
+      width: auto;
+    }
+  }
+
+  @media (min-width: 960px) {
+    padding: 20px 0;
+    width: 90%;
+
+    .logo img {
+      width: 160px;
+    }
+
+    .nav {
+      font-size: 1rem;
+
+      ul li a {
+        padding: 0.5rem 1rem;
+      }
+    }
+
   }
 }
