@@ -15,10 +15,14 @@ services:
       - mysql-data:/var/lib/mysql
 
   frontend:
-    image: tbi-wordpress
+    image: quay.io/ktbartholomew/teambicyclesinc
     networks:
       - teambicyclesinc
     environment:
+      - DB_NAME=wordpress
+      - DB_USER=root
+      - DB_PASSWORD=password
+      - DB_HOST=db
       - GOOGLE_CALENDAR_ID=teambikesinc@gmail.com
       - GOOGLE_API_KEY=${GOOGLE_API_KEY}
       - ACF_KEY=${ACF_KEY}

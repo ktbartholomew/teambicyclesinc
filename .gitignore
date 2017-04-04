@@ -1,6 +1,6 @@
-node_module
 npm-debug.log
+node_modules
 dist
 src/vendor
-node_modules
 .DS_Store
+env
