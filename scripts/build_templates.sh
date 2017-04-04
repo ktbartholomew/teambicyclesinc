@@ -10,9 +10,11 @@ if [ ! -d ${scriptroot}/../dist ];then
   mkdir -p ${scriptroot}/../dist/templates
 fi
 
+# This stanza expects to run in the composer docker container
 if [ ! -d ${scriptroot}/../src/vendor ];then
-  docker run --rm \
-  -v ${scriptroot}/../src:/app composer install -o
+  pushd src
+  composer install -o
+  popd
 fi
 
-cp -a ${scriptroot}/../src/ ${scriptroot}/../dist/
+cp -a ${scriptroot}/../src/* ${scriptroot}/../dist/

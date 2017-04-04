@@ -1,11 +1,6 @@
 Dockerfile
 LICENSE
 README.md
-dist
 docker-compose.yml
 node_modules
-package.json
-scripts
 src
-test
-varnish

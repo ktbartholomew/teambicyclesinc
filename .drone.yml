@@ -1,0 +1,18 @@
+pipeline:
+  templates:
+    image: composer:latest
+    commands:
+      - scripts/build_templates.sh
+  sass:
+    image: node:6.9.5
+    environment:
+      - NPM_CONFIG_LOGLEVEL=warn
+    commands:
+      - npm install
+      - scripts/build_css.sh
+  build:
+    image: plugins/docker
+    repo: quay.io/ktbartholomew/teambicyclesinc
+    when:
+      branch: master
+      event: [push, tag, deployment]
