@@ -6,7 +6,6 @@ body.page {
       background-size: cover;
       background-position: 50% 50%;
       background-repeat: no-repeat;
-      height: 30vw;
       margin-bottom: 2rem;
 
       &:before {
@@ -25,17 +24,36 @@ body.page {
       .title {
         color: white;
         font-weight: 900;
-        font-size: 3.25rem;
-        padding-top: 11vw;
+        font-size: 2.2rem;
+        padding: 7vw 0;
         text-align: center;
         text-shadow: 0px 0.06em 0px rgba(black, 0.4);
         text-transform: uppercase;
+      }
+
+      @media (min-width: 750px) {
+        max-height: 30vw;
+
+        .title {
+          font-size: 3.25rem;
+        }
+      }
+
+      @media (min-width: 941px) {
+        .title {
+          padding: 11vw 0;
+        }
       }
     }
 
     .content {
       max-width: 45em;
       margin: 0 auto;
+      padding: 0 2.5%;
+
+      @media (min-width: 860px) {
+        padding: 0;
+      }
     }
   }
 }
