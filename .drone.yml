@@ -13,6 +13,10 @@ pipeline:
   build:
     image: plugins/docker
     repo: quay.io/ktbartholomew/teambicyclesinc
+    registry: quay.io
+    username: ${QUAY_USERNAME}
+    password: ${QUAY_PASSWORD}
+    tags: latest
     when:
       branch: master
       event: [push, tag, deployment]
