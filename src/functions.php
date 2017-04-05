@@ -7,6 +7,12 @@ use Timber\Timber;
 // Use the composer autoload file for PSR-4 autoloading
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Set the site URL to whatever is currently being requested
+$request_url = Helpers\Request::getRequestUrl();
+$site_url = $request_url->protocol . '//' . $request_url->host . ':' . $request_url->port;
+define('WP_SITEURL', $site_url);
+define('WP_HOME', $site_url);
+
 // We depend on the advanced-custom-fields-pro plugin, so let’s make sure it's
 // installed before moving on.
 Helpers\Plugins::ensurePlugins();
