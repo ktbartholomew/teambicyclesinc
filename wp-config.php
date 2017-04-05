@@ -22,6 +22,10 @@ if (getenv('DEBUG') === '1') {
   define('WP_DEBUG', true);
 }
 
+if (array_key_exists('HTTP_X_FORWARDED_PROTO', $_SERVER) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+  $_SERVER['HTTPS'] = 'on';
+}
+
 if ( !defined('ABSPATH') )
   define('ABSPATH', dirname(__FILE__) . '/');
 require_once(ABSPATH . 'wp-settings.php');

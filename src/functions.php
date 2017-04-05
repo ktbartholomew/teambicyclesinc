@@ -11,10 +11,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $request_url = Helpers\Request::getRequestUrl();
 $site_url = $request_url->protocol . '//' . $request_url->host;
 
-if ($request_url->nonstandard_port) {
-  $site_url =  $sit_url . ':' . $request_url->port;
-}
-
 define('WP_SITEURL', $site_url);
 define('WP_HOME', $site_url);
 
