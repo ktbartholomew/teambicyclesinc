@@ -11,6 +11,10 @@ chokidar.watch(path.resolve(__dirname, '../src/'), {ignored: /src\/vendor/})
       process.stdout.write('running build_templates.sh...');
       childProcess.execFile(path.resolve(__dirname, './build_templates.sh'), (err, result) => {
         if (err) {
+          if (result) {
+            process.stderr.write(result);
+          }
+
           console.log(err);
           return;
         }
@@ -23,6 +27,9 @@ chokidar.watch(path.resolve(__dirname, '../src/'), {ignored: /src\/vendor/})
       process.stdout.write('running build_css.sh...');
       childProcess.execFile(path.resolve(__dirname, './build_css.sh'), (err, result) => {
         if (err) {
+          if (result) {
+            process.stderr.write(result);
+          }
           console.log(err);
           return;
         }
