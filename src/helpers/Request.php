@@ -13,11 +13,11 @@ class Request {
    */
   public static function getRequestUrl() {
     $url = new stdClass;
-    $url->protocol = (! array_key_exists('HTTPS', $_SERVER)) ? 'http:' : 'https:';
+    $url->protocol = (array_key_exists('HTTPS', $_SERVER) || $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https' ) ? 'https:' : 'http:';
     $url->auth = (array_key_exists('PHP_AUTH_USER', $_SERVER)) ? $_SERVER['PHP_AUTH_USER'] : '';
     $url->auth .= (array_key_exists('PHP_AUTH_PW', $_SERVER)) ? ':' . $_SERVER['PHP_AUTH_PW'] : '';
-    $url->host = $_SERVER['SERVER_NAME'];
-    $url->port = $_SERVER['SERVER_PORT'];
+    $url->host = ($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : $_SERVER['HTTP_HOST'];
+    $url->port = ($_SERVER['HTTP_X_FORWARDED_PORT']) ? $_SERVER['HTTP_X_FORWARDED_PORT'] : $_SERVER['SERVER_PORT'];
     $url->path = $_SERVER['REQUEST_URI'];
     $url->pathname = (strpos($url->path, '?')) ? strstr($url->path, '?', true) : $url->path;
     $url->search = strstr($url->path, '?');
