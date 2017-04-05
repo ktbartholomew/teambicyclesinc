@@ -6,7 +6,7 @@ services:
       - teambicyclesinc
     environment:
       - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=wordpress
+      - MYSQL_DATABASE=${DB_NAME}
     deploy:
       replicas: 1
       restart_policy:
