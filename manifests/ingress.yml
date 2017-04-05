@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: wordpress
+  namespace: teambicyclesinc
+  labels:
+    app: wordpress
+  annotations:
+    kubernetes.io/tls-acme: "true"
+spec:
+  tls:
+  - secretName: teambicyclesinc-tls
+    hosts:
+    - tbi.keithbartholomew.com
+  rules:
+  - host: tbi.keithbartholomew.com
+    http:
+      paths:
+      - backend:
+          serviceName: wordpress
+          servicePort: 80

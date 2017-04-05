@@ -27,7 +27,7 @@ spec:
   selector:
     app: teambicyclesinc
     role: wordpress
-  type: ClusterIP
+  type: NodePort
   ports:
   - name: http
     port: 80
