@@ -18,17 +18,14 @@ class Request {
     $url->auth .= (array_key_exists('PHP_AUTH_PW', $_SERVER)) ? ':' . $_SERVER['PHP_AUTH_PW'] : '';
     $url->host = $_SERVER['SERVER_NAME'];
     $url->port = $_SERVER['SERVER_PORT'];
+    $url->nonstandard_port = (($url->protocol === 'http:' && $url->port !== '80') || ($url->protocol === 'https:' && $url->port !== '443'));
     $url->path = $_SERVER['REQUEST_URI'];
     $url->pathname = (strpos($url->path, '?')) ? strstr($url->path, '?', true) : $url->path;
     $url->search = strstr($url->path, '?');
     $url->query = substr(strstr($url->path, '?'), 1);
 
     $url->href = $url->protocol . '//' . $url->auth . (($url->auth) ? '@' : '') . $url->host;
-      if ($url->protocol === 'http:' && $url->port !== '80') {
-        $url->href .= ':' . $url->port;
-      }
-
-      if ($url->protocol === 'https:' && $url->port !== '443') {
+      if ($url->nonstandard_port) {
         $url->href .= ':' . $url->port;
       }
 
