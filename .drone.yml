@@ -12,11 +12,14 @@ pipeline:
       - scripts/build_css.sh
   build:
     image: plugins/docker
-    repo: quay.io/ktbartholomew/teambicyclesinc
     registry: quay.io
-    username: ${QUAY_USERNAME}
-    password: ${QUAY_PASSWORD}
-    tags: latest
+    repo: quay.io/ktbartholomew/teambicyclesinc
+    tags:
+    - "latest"
+    - "${DRONE_COMMIT_SHA}"
+    secrets:
+    - docker_username
+    - docker_password
     when:
       branch: master
       event: [push, tag, deployment]
