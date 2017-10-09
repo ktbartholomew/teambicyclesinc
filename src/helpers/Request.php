@@ -13,11 +13,11 @@ class Request {
    */
   public static function getRequestUrl() {
     $url = new stdClass;
-    $url->protocol = (array_key_exists('HTTPS', $_SERVER) || $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https' ) ? 'https:' : 'http:';
+    $url->protocol = (array_key_exists('HTTPS', $_SERVER) || (array_key_exists('HTTP_X_FORWARDED_PROTO', $_SERVER) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') ) ? 'https:' : 'http:';
     $url->auth = (array_key_exists('PHP_AUTH_USER', $_SERVER)) ? $_SERVER['PHP_AUTH_USER'] : '';
     $url->auth .= (array_key_exists('PHP_AUTH_PW', $_SERVER)) ? ':' . $_SERVER['PHP_AUTH_PW'] : '';
-    $url->host = ($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : $_SERVER['HTTP_HOST'];
-    $url->port = ($_SERVER['HTTP_X_FORWARDED_PORT']) ? $_SERVER['HTTP_X_FORWARDED_PORT'] : $_SERVER['SERVER_PORT'];
+    $url->host = (array_key_exists('HTTP_X_FORWARDED_HOST', $_SERVER) && $_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : $_SERVER['HTTP_HOST'];
+    $url->port = (array_key_exists('HTTP_X_FORWARDED_PORT', $_SERVER) && $_SERVER['HTTP_X_FORWARDED_PORT']) ? $_SERVER['HTTP_X_FORWARDED_PORT'] : $_SERVER['SERVER_PORT'];
     $url->nonstandard_port = (($url->protocol === 'http:' && $url->port !== '80') || ($url->protocol === 'https:' && $url->port !== '443'));
     $url->path = $_SERVER['REQUEST_URI'];
     $url->pathname = (strpos($url->path, '?')) ? strstr($url->path, '?', true) : $url->path;
