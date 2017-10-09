@@ -11,8 +11,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $request_url = Helpers\Request::getRequestUrl();
 $site_url = $request_url->protocol . '//' . $request_url->host;
 
-define('WP_SITEURL', $site_url);
-define('WP_HOME', $site_url);
+update_option('siteurl', $site_url);
+update_option('home', $site_url);
 
 // We depend on the advanced-custom-fields-pro plugin, so let’s make sure it's
 // installed before moving on.
