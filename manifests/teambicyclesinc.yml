@@ -17,6 +17,21 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: teambicyclesinc
+  name: cache
+spec:
+  selector:
+    app: teambicyclesinc
+    role: cache
+  type: NodePort
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: teambicyclesinc
   name: wordpress
 spec:
   selector:
@@ -68,7 +83,36 @@ spec:
       volumes:
       - name: mysql-data
         hostPath:
-          path: /mnt/gv0/teambicyclesinc/mysql
+          path: /data/teambicyclesinc_db
+      nodeSelector:
+        has_teambicyclesinc_db: "true"
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: teambicyclesinc
+  name: cache
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: teambicyclesinc
+        role: cache
+    spec:
+      containers:
+      - name: cache
+        image: nginx
+        ports:
+        - name: http
+          containerPort: 8080
+        volumeMounts:
+        - name: config
+          mountPath: /etc/nginx/conf.d/default.conf
+      volumes:
+      - name: config
+        hostPath:
+          path: /mnt/gv0/teambicyclesinc/proxy-cache.conf
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment

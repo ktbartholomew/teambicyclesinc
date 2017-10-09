@@ -17,5 +17,5 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: wordpress
+          serviceName: cache
           servicePort: 80
