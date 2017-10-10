@@ -22,7 +22,7 @@ spec:
   selector:
     app: teambicyclesinc
     role: cache
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: http
     port: 80
@@ -37,7 +37,7 @@ spec:
   selector:
     app: teambicyclesinc
     role: wordpress
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: http
     port: 80
@@ -79,13 +79,11 @@ spec:
         resources:
           limits:
             cpu: "1"
-            memory: "200Mi"
+            memory: "500Mi"
       volumes:
       - name: mysql-data
         hostPath:
-          path: /data/teambicyclesinc_db
-      nodeSelector:
-        has_teambicyclesinc_db: "true"
+          path: /mnt/gv0/teambicyclesinc/mysql
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -120,7 +118,7 @@ metadata:
   name: wordpress
   namespace: teambicyclesinc
 spec:
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       labels:
@@ -211,8 +209,7 @@ spec:
           mountPath: /var/www/html/wp-content/uploads
         resources:
           limits:
-            cpu: "0.5"
-            memory: "100Mi"
+            memory: "400Mi"
       volumes:
       - name: wp-uploads
         hostPath:
