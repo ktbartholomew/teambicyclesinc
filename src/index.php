@@ -24,6 +24,16 @@ if (is_page() && get_post()->post_name === 'faqs') {
   exit();
 }
 
+if (is_page() && get_post()->post_name === 'events') {
+  new Controllers\EventsPage();
+  exit();
+}
+
+if (is_single() && get_post_type() === 'tbi_event') {
+  new Controllers\EventSingle();
+  exit();
+}
+
 if (is_page() && get_post()->post_name === 'calendar') {
   new Controllers\CalendarPage();
   exit();

@@ -1,0 +1,39 @@
+{% extends "layouts/_base.twig" %}
+
+{% block htmlTitle %}{{ page.title }} - {{ site.title }}{% endblock %}
+{% block bodyClasses %}page{% endblock %}
+{% block content %}
+<article class="{{ page.class }}">
+  {% if page.header_background_image %}
+    <div class="header" style="background-image: url({{ page.header_background_image.src }});">
+  {% else %}
+    <div class="header">
+  {% endif %}
+    <h1 class="title">{{ page.title }}</h1>
+  </div>
+  <div class="content">
+    {% block pageContent %}
+      <h3>{{ page.title }}</h3>
+      <time>{{ page.event_date|date('F j, Y \\a\\t g:ia')}}</time> &ndash;
+      <a href="https://maps.google.com/maps/place/{{ page.event_location|url_encode }}">{{ page.event_location }}</a>
+      <div class="content">{{ page.content }}</div>
+      <div class="map">{{ page.event_map_embed }}</div>
+      <div class="photos">
+        <ul class="photo-gallery">
+        {% for photo_id in page.event_photos %}
+          {% set photo = TimberImage(photo_id) %}
+
+          <li class="photo">
+            <figure>
+              <img src="{{ photo.src }}"/>
+              <caption>{{ photo.caption }}</caption>
+            </figure>
+
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+    {% endblock %}
+  </div>
+</article>
+{% endblock %}

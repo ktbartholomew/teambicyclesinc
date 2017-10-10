@@ -1,0 +1,13 @@
+{% extends "page.twig" %} {% block bodyClasses %}page events-page{% endblock %} {% block pageContent %}
+<div class="page-content">{{ page.content }}</div>
+<ol>
+  {% for event in events %}
+  <li class="event">
+    <h3><a href="{{ event.link }}">{{ event.title }}</a></h3>
+    <time>{{ event.event_date|date('F j, Y \\a\\t g:ia')}}</time> &ndash;
+    <a href="https://maps.google.com/maps/place/{{ event.event_location|url_encode }}">{{ event.event_location }}</a>
+    <div class="summary">{{ event.event_summary }}</div>
+  </li>
+  {% endfor %}
+</ol>
+{% endblock %}
