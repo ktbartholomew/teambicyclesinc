@@ -1,39 +1,69 @@
 {% extends "layouts/_base.twig" %}
-
 {% block htmlTitle %}{{ page.title }} - {{ site.title }}{% endblock %}
-{% block bodyClasses %}page{% endblock %}
+{% block bodyClasses %}page events-single{% endblock %}
 {% block content %}
 <article class="{{ page.class }}">
-  {% if page.header_background_image %}
-    <div class="header" style="background-image: url({{ page.header_background_image.src }});">
-  {% else %}
-    <div class="header">
-  {% endif %}
-    <h1 class="title">{{ page.title }}</h1>
-  </div>
   <div class="content">
     {% block pageContent %}
-      <h3>{{ page.title }}</h3>
-      <time>{{ page.event_date|date('F j, Y \\a\\t g:ia')}}</time> &ndash;
-      <a href="https://maps.google.com/maps/place/{{ page.event_location|url_encode }}">{{ page.event_location }}</a>
-      <div class="content">{{ page.content }}</div>
-      <div class="map">{{ page.event_map_embed }}</div>
-      <div class="photos">
-        <ul class="photo-gallery">
-        {% for photo_id in page.event_photos %}
-          {% set photo = TimberImage(photo_id) %}
+    <div class="title">
+      <a href="../" class="parent-link">&larr; Events</a>
+      <h1>{{ page.title }}</h1>
 
-          <li class="photo">
-            <figure>
-              <img src="{{ photo.src }}"/>
-              <caption>{{ photo.caption }}</caption>
-            </figure>
-
-          </li>
-        {% endfor %}
-        </ul>
+    </div>
+    <div class="info">
+      <aside class="details">
+        <dl>
+          {% if page.event_date %}
+          <dt>Date</dt>
+          <dd>
+            <time>{{ page.event_date|date('F j, Y')}}</time>
+          </dd>
+          {% endif %} {% if page.event_date|date('H:i') != "00:00" %}
+          <dt>Time</dt>
+          <dd>
+            <time>{{ page.event_date|date('G:ia')}}</time>
+          </dd>
+          {% endif %} {% if page.event_location %}
+          <dt>Location</dt>
+          <dd>
+            <a href="https://maps.google.com/maps/place/{{ page.event_location|url_encode }}" target="_blank" rel="noopener">{{ page.event_location }}</a>
+          </dd>
+          {% endif %} {% if page.get_field('event_links')|length > 0 %}
+          <dt>Links</dt>
+          <dd>
+            <ul>
+              {% for link in page.get_field('event_links') %}
+              <li>
+                <a href="{{ link.name.url }}" target="_blank" rel="noopener">{{ link.name.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </dd>
+          {% endif %}
+        </dl>
+      </aside>
+      <div class="description">
+        <div class="content">{{ page.content }}</div>
+        {% if page.event_map_embed %}
+        <div class="map">{{ page.event_map_embed }}</div>
+        {% endif %}
+        <div class="photos">
+          <div class="photo-gallery">
+            {% set first = TimberImage(page.event_photos[0]) %}
+            <div class="contents">
+              <div style="background-image: url('{{ first.src }}');" class="image current"></div>
+            </div>
+            {% for photo_id in page.event_photos %} {% set photo = TimberImage(photo_id) %}
+            <img src="{{ photo.src('thumbnail') }}" data-src="{{ photo.src }}" data-caption="{{ photo.caption }}" />
+            {% endfor %}
+          </div>
+        </div>
       </div>
+    </div>
     {% endblock %}
   </div>
 </article>
+{% endblock %}
+{% block bodyEnd %}
+  <script src="{{ site.theme.uri }}/js/eventsSingle.js" async/>
 {% endblock %}

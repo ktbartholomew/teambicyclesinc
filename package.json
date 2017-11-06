@@ -23,6 +23,6 @@
     "chokidar": "1.6.1",
     "node-glob": "1.2.0",
     "node-sass": "4.5.0",
-    "webpack": "2.2.1"
+    "webpack": "3.8.1"
   }
 }

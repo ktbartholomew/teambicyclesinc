@@ -1,0 +1,145 @@
+body.events-page {
+  .events-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .event {
+    display: flex;
+
+    & + .event {
+      margin-top: 40px;
+    }
+
+    .info {
+      color: $text-color;
+      flex: 0 0 50%;
+      margin-right: 10px;
+
+      &:hover {
+        text-decoration: none;
+
+        .title {
+          color: $link-color;
+        }
+      }
+    }
+
+    .title {
+      font-size: 1.666rem;
+      font-weight: 600;
+      margin-bottom: 0.333em;
+      text-transform: none;
+    }
+
+    .details {
+      font-size: 14px;
+      line-height: 20px;
+      margin-bottom: 10px;
+
+      .event-type {
+        background: $link-color;
+        border-radius: 2px;
+        color: white;
+        display: inline-block;
+        padding: 0 1em;
+        text-transform: uppercase;
+      }
+
+      time {
+        color: tint($text-color, 30%);
+        display: inline-block;
+        margin-left: 10px;
+      }
+    }
+
+    .summary {
+      font-size: 15px;
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .images {
+      display: flex;
+      margin-left: 10px;
+      .image {
+        flex: 0 0 50%;
+
+        & + .image {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+
+body.events-single {
+  .tbi_event {
+    border-top: solid 1px shade($body-color, 5%);
+    padding-top: 20px;
+
+    .content {
+      max-width: 50.5em;
+    }
+
+    .title {
+      .parent-link {
+        display: block;
+        font-size: 0.777rem;
+        margin-bottom: 1rem;
+      }
+
+      h1 {
+        font-weight: 600;
+        font-size: 2.25rem;
+        text-transform: none;
+      }
+    }
+
+    .info {
+      display: flex;
+
+      .details {
+        flex: 1 0 33%;
+
+        & > dl {
+          // background: tint($club-blue, 95%);
+          background: shade(white, 1%);
+          border: solid 1px tint($club-blue, 85%);
+          box-shadow: 0px 4px 6px rgba(black, 0.04);
+          font-size: 0.833rem;
+          margin: 0;
+          padding: 20px;
+
+          dt {
+            color: tint($text-color, 30%);
+            font-weight: 800;
+            margin-bottom: 0.25em;
+            text-transform: uppercase;
+          }
+
+          dd {
+            margin: 0;
+          }
+
+          dd + dt {
+            margin-top: 1em;
+          }
+
+          ul {
+            list-style-type: none;
+            padding: 0;
+          }
+        }
+      }
+
+      .description {
+        flex: 1 0 66%;
+        margin-left: 20px;
+      }
+    }
+  }
+}
