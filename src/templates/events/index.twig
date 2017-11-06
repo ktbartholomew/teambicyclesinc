@@ -12,15 +12,13 @@
       <div class="summary">{{ event.get_field('event_summary') }}</div>
     </a>
     <div class="images">
+      {% for photo_id in event.event_photos|slice(0,2) %}
+      {% set photo = TimberImage(photo_id) %}
       <div class="image">
-        <img src="//fpoimg.com/210x210" alt="FPO" />
+        <img src="{{ photo.src('medium') }}" alt="{{ photo.caption }}" />
       </div>
-      <div class="image">
-        <img src="//fpoimg.com/210x210" alt="FPO" />
-      </div>
+      {% endfor %}
     </div>
-    {#
-    <a href="https://maps.google.com/maps/place/{{ event.event_location|url_encode }}">{{ event.event_location }}</a> #}
   </li>
   {% endfor %}
 </ol>

@@ -53,7 +53,8 @@
             <div class="contents">
               <div style="background-image: url('{{ first.src }}');" class="image current"></div>
             </div>
-            {% for photo_id in page.event_photos %} {% set photo = TimberImage(photo_id) %}
+            {% for photo_id in page.event_photos %}
+            {% set photo = TimberImage(photo_id) %}
             <img src="{{ photo.src('thumbnail') }}" data-src="{{ photo.src }}" data-caption="{{ photo.caption }}" />
             {% endfor %}
           </div>
