@@ -5,5 +5,6 @@ RUN apt-get update && \
   docker-php-ext-install zip && \
   rm -rf /var/lib/apt/lists/*
 
+COPY php-uploads.ini /usr/local/etc/php/conf.d/
 COPY dist/ /var/www/html/wp-content/themes/theme/
 COPY wp-config.php /var/www/html/wp-config.php
