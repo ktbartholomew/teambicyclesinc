@@ -1,16 +1,18 @@
-@import "helpers/color";
-@import "helpers/container";
-@import "variables/color";
+@import 'helpers/color';
+@import 'helpers/container';
+@import 'variables/color';
 
-@import "components/body";
-@import "components/images";
-@import "components/links";
-@import "components/type";
-@import "components/site-header";
-@import "components/site-footer";
+@import 'components/body';
+@import 'components/images';
+@import 'components/links';
+@import 'components/photo-gallery';
+@import 'components/type';
+@import 'components/site-header';
+@import 'components/site-footer';
 
-@import "pages/home";
-@import "pages/page";
-@import "pages/calendar-page";
-@import "pages/faq-page";
-@import "pages/404";
+@import 'pages/home';
+@import 'pages/page';
+@import 'pages/calendar-page';
+@import 'pages/events';
+@import 'pages/faq-page';
+@import 'pages/404';

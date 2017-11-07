@@ -31,3 +31,17 @@ new Filters\RestApi();
 
 new Timber();
 Timber::$dirname = 'templates';
+
+add_action('init', function () {
+  register_post_type(
+    'tbi_event',
+    array(
+      'labels' => array(
+        'name' => __('Events'),
+        'singular_name' => __('Event')
+      ),
+      'public' => true,
+      'rewrite' => array('slug' => 'events')
+    )
+  );
+});

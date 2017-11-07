@@ -1,0 +1,25 @@
+{% extends "page.twig" %} {% block bodyClasses %}page events-page{% endblock %} {% block pageContent %}
+<div class="page-content">{{ page.content }}</div>
+<ol class="events-list">
+  {% for event in events %}
+  <li class="event">
+    <a class="info" href="{{ event.link }}">
+      <h3 class="title">{{ event.title }}</h3>
+      <div class="details">
+        <span class="event-type rally">Rally</span>
+        <time>{{ event.event_date|date('F j, Y')}}</time>
+      </div>
+      <div class="summary">{{ event.get_field('event_summary') }}</div>
+    </a>
+    <div class="images">
+      {% for photo_id in event.event_photos|slice(0,2) %}
+      {% set photo = TimberImage(photo_id) %}
+      <div class="image">
+        <img src="{{ photo.src('medium') }}" alt="{{ photo.caption }}" />
+      </div>
+      {% endfor %}
+    </div>
+  </li>
+  {% endfor %}
+</ol>
+{% endblock %}

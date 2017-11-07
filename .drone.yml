@@ -8,8 +8,9 @@ pipeline:
     environment:
       - NPM_CONFIG_LOGLEVEL=warn
     commands:
+      - npm install -g webpack
       - npm install
-      - scripts/build_css.sh
+      - webpack
   build:
     image: plugins/docker
     registry: quay.io

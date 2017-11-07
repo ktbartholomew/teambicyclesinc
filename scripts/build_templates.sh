@@ -22,6 +22,7 @@ fi
 if [ ! -d ${scriptroot}/../dist ];then
   mkdir -p ${scriptroot}/../dist
   mkdir -p ${scriptroot}/../dist/img
+  mkdir -p ${scriptroot}/../dist/js
   mkdir -p ${scriptroot}/../dist/templates
 fi
 
