@@ -95,6 +95,7 @@ body.events-single {
       h1 {
         font-weight: 600;
         font-size: 2.25rem;
+        margin-bottom: 1.5rem;
         text-transform: none;
       }
     }
@@ -139,6 +140,23 @@ body.events-single {
       .description {
         flex: 1 0 66%;
         margin-left: 20px;
+
+        .contents,
+        .photos,
+        .map {
+          margin-bottom: 2rem;
+        }
+
+        .photos h3,
+        .map h3 {
+          border-bottom: solid 1px tint($text-color, 85%);
+          font-weight: normal;
+          font-size: 1.2rem;
+          line-height: 1;
+          margin-bottom: 0.75rem;
+          padding-bottom: 0.5rem;
+          text-transform: none;
+        }
       }
     }
   }

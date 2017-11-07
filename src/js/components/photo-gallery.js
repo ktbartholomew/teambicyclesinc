@@ -79,7 +79,7 @@ const PhotoGallery = function(options) {
 };
 
 document.querySelectorAll('.photo-gallery').forEach(element => {
-  PhotoGallery({
+  new PhotoGallery({
     element: element
   });
 });

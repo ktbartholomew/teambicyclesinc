@@ -44,10 +44,8 @@
       </aside>
       <div class="description">
         <div class="content">{{ page.content }}</div>
-        {% if page.event_map_embed %}
-        <div class="map">{{ page.event_map_embed }}</div>
-        {% endif %}
         <div class="photos">
+          <h3 id="photos">Photos</h3>
           <div class="photo-gallery">
             {% set first = TimberImage(page.event_photos[0]) %}
             <div class="contents">
@@ -59,6 +57,12 @@
             {% endfor %}
           </div>
         </div>
+        {% if page.event_map_embed %}
+        <div class="map">
+        <h3>Map</h3>
+          {{ page.event_map_embed }}
+        </div>
+        {% endif %}
       </div>
     </div>
     {% endblock %}
@@ -66,5 +70,5 @@
 </article>
 {% endblock %}
 {% block bodyEnd %}
-  <script src="{{ site.theme.uri }}/js/eventsSingle.js" async/>
+  <script src="{{ site.theme.uri }}/eventsSingle.js" async/>
 {% endblock %}
