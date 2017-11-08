@@ -6,7 +6,15 @@
     <a class="info" href="{{ event.link }}">
       <h3 class="title">{{ event.title }}</h3>
       <div class="details">
+        {% if event.get_field('event_type') == 'rally' %}
         <span class="event-type rally">Rally</span>
+        {% endif %}
+        {% if event.get_field('event_type') == 'race' %}
+        <span class="event-type race">Race</span>
+        {% endif %}
+        {% if event.get_field('event_type') == 'group_ride' %}
+        <span class="event-type group_ride">Group Ride</span>
+        {% endif %}
         <time>{{ event.event_date|date('F j, Y')}}</time>
       </div>
       <div class="summary">{{ event.get_field('event_summary') }}</div>

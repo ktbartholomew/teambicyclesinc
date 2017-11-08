@@ -27,53 +27,26 @@ chokidar
         );
       };
 
-      var compileSass = () => {
-        process.stdout.write('running build_css.sh...');
-        childProcess.execFile(
-          path.resolve(__dirname, './build_css.sh'),
-          (err, result) => {
-            if (err) {
-              if (result) {
-                process.stderr.write(result);
-              }
-              console.log(err);
-              return;
-            }
-
-            process.stdout.write('OK\n');
-          }
-        );
-      };
-
-      var compileJs = () => {
-        process.stdout.write('running webpack...');
-        childProcess.exec(
-          'webpack',
-          {
-            cwd: path.resolve(__dirname, '../')
-          },
-          (err, result) => {
-            if (err) {
-              process.stdout.write('\n');
-              console.log(result);
-              return;
-            }
-
-            process.stdout.write('OK\n');
-          }
-        );
-      };
-
       if (filePath.match(/\.(php|twig|css|png|jpg|gif)$/)) {
         return copyTemplates();
       }
-
-      if (filePath.match(/\.(js|jsx)$/)) {
-        return compileJs();
-      }
-
-      if (filePath.match(/\.scss$/)) {
-        return compileSass();
-      }
     });
   });
+
+var w = childProcess.exec(
+  'webpack --watch',
+  {
+    cwd: path.resolve(__dirname, '../')
+  },
+  (err, result) => {
+    if (err) {
+      process.stdout.write('\n');
+      console.log(result);
+      return;
+    }
+  }
+);
+
+w.stdout.on('data', chunk => {
+  process.stdout.write(chunk);
+});

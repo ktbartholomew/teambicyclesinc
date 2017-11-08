@@ -39,17 +39,31 @@ body.events-page {
       margin-bottom: 10px;
 
       .event-type {
-        background: $link-color;
         border-radius: 2px;
         color: white;
         display: inline-block;
         padding: 0 1em;
         text-transform: uppercase;
+
+        &.rally {
+          background: $club-blue;
+        }
+
+        &.race {
+          background: $club-red;
+        }
+
+        &.group_ride {
+          background: $light-green;
+        }
       }
 
       time {
         color: tint($text-color, 30%);
         display: inline-block;
+      }
+
+      .event-type + time {
         margin-left: 10px;
       }
     }

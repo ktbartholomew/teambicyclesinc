@@ -17,8 +17,9 @@ class EventsPage {
 
     $context['events'] = Timber::get_posts([
       'post_type' => 'tbi_event',
+      'meta_key' => 'event_date',
+      'orderby' => 'meta_value',
       'order' => 'DESC',
-      'orderby' => 'event_date'
     ]);
 
     Timber::render('events/index.twig', $context);
