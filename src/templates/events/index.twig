@@ -23,7 +23,7 @@
       {% for photo_id in event.event_photos|slice(0,2) %}
       {% set photo = TimberImage(photo_id) %}
       <div class="image">
-        <img src="{{ photo.src('medium') }}" alt="{{ photo.caption }}" />
+        <img src="{{ photo.src('events-thumb') }}" alt="{{ photo.caption }}" />
       </div>
       {% endfor %}
     </div>

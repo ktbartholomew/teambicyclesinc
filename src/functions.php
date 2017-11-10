@@ -44,4 +44,7 @@ add_action('init', function () {
       'rewrite' => array('slug' => 'events')
     )
   );
+
+  // crop event photo thumbnails to 220x220
+  add_image_size('events-thumb', 220, 220, true);
 });
