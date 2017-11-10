@@ -8,3 +8,4 @@ RUN apt-get update && \
 COPY php-uploads.ini /usr/local/etc/php/conf.d/
 COPY dist/ /var/www/html/wp-content/themes/theme/
 COPY wp-config.php /var/www/html/wp-config.php
+COPY theme-helper.php /var/www/html/wp-content/mu-plugins/
