@@ -29,8 +29,3 @@ if (array_key_exists('HTTP_X_FORWARDED_PROTO', $_SERVER) && $_SERVER['HTTP_X_FOR
 if ( !defined('ABSPATH') )
   define('ABSPATH', dirname(__FILE__) . '/');
 require_once(ABSPATH . 'wp-settings.php');
-
-// This is slightly broken because the previous theme's templates will still
-// be used for the first request after this command is applied. After that it's
-// business as usual.
-switch_theme('theme');
