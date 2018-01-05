@@ -2,21 +2,6 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: teambicyclesinc
-  name: mysql
-spec:
-  selector:
-    app: teambicyclesinc
-    role: db
-  type: ClusterIP
-  ports:
-  - name: mysql
-    port: 3306
-    targetPort: 3306
----
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: teambicyclesinc
   name: cache
 spec:
   selector:
@@ -43,47 +28,30 @@ spec:
     port: 80
     targetPort: 80
 ---
-apiVersion: extensions/v1beta1
-kind: Deployment
+apiVersion: v1
+kind: PersistentVolume
 metadata:
-  name: mysql
-  namespace: teambicyclesinc
+  name: teambicyclesinc
 spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: teambicyclesinc
-        role: db
-    spec:
-      containers:
-      - name: mysql
-        image: mysql:5.7
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-password
-              key: password
-        - name: MYSQL_DATABASE
-          valueFrom:
-            secretKeyRef:
-              name: wordpress-secrets
-              key: db_name
-        ports:
-        - name: mysql
-          containerPort: 3306
-        volumeMounts:
-        - name: mysql-data
-          mountPath: /var/lib/mysql
-        resources:
-          limits:
-            cpu: "1"
-            memory: "500Mi"
-      volumes:
-      - name: mysql-data
-        hostPath:
-          path: /mnt/gv0/teambicyclesinc/mysql
+  capacity:
+    storage: 20Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: nfs-internal.kubernetes.keithbartholomew.com
+    path: /exports/share/teambicyclesinc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: teambicyclesinc
+  name: teambicyclesinc
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -107,10 +75,11 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /etc/nginx/conf.d/default.conf
+          subPath: proxy-cache.conf
       volumes:
       - name: config
-        hostPath:
-          path: /mnt/gv0/teambicyclesinc/proxy-cache.conf
+        persistentVolumeClaim:
+          claimName: teambicyclesinc
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -145,7 +114,7 @@ spec:
               name: wordpress-secrets
               key: db_password
         - name: DB_HOST
-          value: mysql.teambicyclesinc.svc.cluster.local
+          value: mysql-internal.kubernetes.keithbartholomew.com
         - name: GOOGLE_CALENDAR_ID
           valueFrom:
             secretKeyRef:
@@ -207,10 +176,11 @@ spec:
         volumeMounts:
         - name: wp-uploads
           mountPath: /var/www/html/wp-content/uploads
+          subPath: wp-uploads
         resources:
           limits:
             memory: "400Mi"
       volumes:
       - name: wp-uploads
-        hostPath:
-          path: /mnt/gv0/teambicyclesinc/wp-uploads
+        persistentVolumeClaim:
+          claimName: teambicyclesinc
