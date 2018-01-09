@@ -15,7 +15,7 @@ RewriteRule . /index.php [L]
 EOF
 
 mkdir -p /var/www/html/wp-content/plugins
-chown -R www-data:www-data /var/www/html
+chown -R www-data:www-data /var/www/html || true
 
 acfurl="https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=${ACF_KEY}"
 curl -sSL -o /tmp/acf.zip "$acfurl"
