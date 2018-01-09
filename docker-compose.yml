@@ -15,7 +15,7 @@ services:
       - mysql-data:/var/lib/mysql
 
   frontend:
-    image: quay.io/ktbartholomew/teambicyclesinc
+    image: teambicyclesinc
     networks:
       - teambicyclesinc
     environment:
