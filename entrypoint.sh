@@ -28,7 +28,11 @@ if [ "$zipok" == "0" ]; then
   exit 1
 fi
 
-unzip -q /tmp/acf.zip -d wp-content/plugins
+unzip -o -q /tmp/acf.zip -d wp-content/plugins
 rm /tmp/acf.zip
 
-apache2-foreground
+if [[ "$@" == ""  ]];then
+  apache2-foreground
+else
+  exec "$@"
+fi

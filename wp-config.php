@@ -16,6 +16,9 @@ define('SECURE_AUTH_SALT', getenv('SECURE_AUTH_SALT'));
 define('LOGGED_IN_SALT',   getenv('LOGGED_IN_SALT'));
 define('NONCE_SALT',       getenv('NONCE_SALT'));
 
+define('GOOGLE_CALENDAR_ID', getenv('GOOGLE_CALENDAR_ID'));
+define('GOOGLE_API_KEY', getenv('GOOGLE_API_KEY'));
+
 $table_prefix  = 'wp_';
 
 if (getenv('DEBUG') === '1') {

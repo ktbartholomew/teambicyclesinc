@@ -32,5 +32,5 @@ if [ ! -d ${scriptroot}/../src/vendor ];then
   popd
 fi
 
-cp -a ${scriptroot}/../src/* ${scriptroot}/../dist/
+cp -a ${scriptroot}/../src/. ${scriptroot}/../dist/
 rm -r ${scriptroot}/../dist/{scss,js}
