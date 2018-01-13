@@ -17,8 +17,8 @@ class GoogleCalendar {
   protected static $calendar_base_url = 'https://www.googleapis.com/calendar/v3/calendars';
 
   function __construct() {
-    $this->calendar_id = getenv('GOOGLE_CALENDAR_ID');
-    $this->api_key = getenv('GOOGLE_API_KEY');
+    $this->calendar_id = constant('GOOGLE_CALENDAR_ID');
+    $this->api_key = constant('GOOGLE_API_KEY');
 
     if ($this->calendar_id === false) {
       throw new Exception('Environment variable GOOGLE_CALENDAR_ID not set');

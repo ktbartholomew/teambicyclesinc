@@ -7,7 +7,6 @@ use Timber\Timber;
 
 header('cache-control: public, max-age=1200');
 
-
 // This file will be loaded for a number of edge case scenarios for which other
 // template files don't exist. Below we try to identify the edge case and render
 // a page, but default to showing the 404 page.
