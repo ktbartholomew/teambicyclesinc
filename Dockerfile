@@ -1,5 +1,7 @@
 FROM wordpress:4.9.1-php7.0-apache
 
+RUN rm -r /usr/src/wordpress/wp-content/themes/twenty*
+
 RUN apt-get update && \
   apt-get install -y -qqq zip && \
   rm -rf /var/lib/apt/lists/*

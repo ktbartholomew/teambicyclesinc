@@ -2,7 +2,8 @@
 
 set -ueo pipefail
 
-cp -a /usr/src/wordpress/* /var/www/html/
+cp -a /usr/src/wordpress/. /var/www/html/
+
 cat > .htaccess <<EOF
 <IfModule mod_rewrite.c>
 RewriteEngine On
