@@ -3,6 +3,7 @@
 namespace Theme;
 
 use Theme\Helpers\Request;
+use Theme\Controllers;
 use Timber\Timber;
 
 header('cache-control: public, max-age=1200');

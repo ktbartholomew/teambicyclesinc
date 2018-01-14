@@ -25,12 +25,12 @@ if [ ! -d ${scriptroot}/../dist ];then
   mkdir -p ${scriptroot}/../dist/templates
 fi
 
-# This stanza expects to run in the composer docker container
-if [ ! -d ${scriptroot}/../src/vendor ];then
-  pushd src
-  composer install -o
-  popd
-fi
+pushd src
+composer install
+composer update
+composer dump-autoload --optimize
+popd
+
 
 cp -a ${scriptroot}/../src/. ${scriptroot}/../dist/
 rm -r ${scriptroot}/../dist/{scss,js}
