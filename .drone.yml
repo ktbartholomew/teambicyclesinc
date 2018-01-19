@@ -31,5 +31,8 @@ pipeline:
     - aws_key
     - aws_secret
     - acf_key
+    when:
+      branch: master
+      event: [push, tag, deployment]
     commands:
     - RELEASES="latest ${DRONE_COMMIT_SHA}" /entrypoint.sh /publish.sh
