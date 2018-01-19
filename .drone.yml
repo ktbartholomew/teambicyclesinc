@@ -31,4 +31,5 @@ pipeline:
     - aws_secret
     - acf_key
     commands:
-    - env
+    - RELEASE=latest /publish.sh
+    - RELEASE=${DRONE_COMMIT_SHA} /publish.sh

@@ -11,5 +11,6 @@ COPY dist/ /var/www/html/wp-content/themes/theme/
 COPY wp-config.php /var/www/html/wp-config.php
 COPY theme-helper.php /var/www/html/wp-content/mu-plugins/
 COPY entrypoint.sh /entrypoint.sh
+COPY publish.sh /publish.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
