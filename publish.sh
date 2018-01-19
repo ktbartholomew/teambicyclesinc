@@ -41,4 +41,4 @@ function main() {
   rm /tmp/release.zip
 }
 
-
+main
