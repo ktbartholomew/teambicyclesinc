@@ -1,12 +1,14 @@
 #!/bin/bash
 
-set -uxeo pipefail
+set -ueo pipefail
 
 key=${AWS_KEY}
 secret=${AWS_SECRET}
 
 function upload_release() {
+  echo -n "zipping up all files from /var/www/html..."
   zip -q -r -9 -o /tmp/release.zip /var/www/html
+  echo "done."
 
   file=${1}.zip
   aws_path=/teambicyclesinc/releases/
@@ -16,13 +18,16 @@ function upload_release() {
   content_type='application/zip'
   string="PUT\n\n$content_type\n$date\n$acl\n/$bucket$aws_path$file"
   signature=$(echo -en "${string}" | openssl sha1 -hmac "${secret}" -binary | base64)
-  curl -X PUT -T "/tmp/release.zip" \
+  url="https://$bucket.nyc3.digitaloceanspaces.com$aws_path$file"
+  echo -n "Uploading to $url..."
+  curl -f -s -X PUT -T "/tmp/release.zip" \
     -H "Host: $bucket.nyc3.digitaloceanspaces.com" \
     -H "Date: $date" \
     -H "Content-Type: $content_type" \
     -H "$acl" \
     -H "Authorization: AWS ${key}:$signature" \
-    "https://$bucket.nyc3.digitaloceanspaces.com$aws_path$file"
+    "$url"
+  echo "done."
 
   rm /tmp/release.zip
 }
