@@ -6,10 +6,6 @@ key=${AWS_KEY}
 secret=${AWS_SECRET}
 
 function upload_release() {
-  echo -n "zipping up all files from /var/www/html..."
-  zip -q -r -9 -o /tmp/release.zip /var/www/html
-  echo "done."
-
   file=${1}.zip
   aws_path=/teambicyclesinc/releases/
   bucket='ktbartholomew'
@@ -29,8 +25,20 @@ function upload_release() {
     "$url"
   echo "done."
 
+}
+
+function main() {
+  echo -n "zipping up all files from /var/www/html..."
+    pushd /var/www/html
+    zip -q -r -9 -o /tmp/release.zip .
+    popd
+  echo "done."
+
+  for release in $(printf "%s\n" ${RELEASES}); do
+    upload_release ${release}
+  done
+
   rm /tmp/release.zip
 }
 
-upload_release ${RELEASE}
 
