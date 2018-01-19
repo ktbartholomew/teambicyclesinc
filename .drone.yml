@@ -24,3 +24,15 @@ pipeline:
     when:
       branch: master
       event: [push, tag, deployment]
+  publish:
+    image: quay.io/ktbartholomew/teambicyclesinc:latest
+    pull: true
+    secrets:
+    - aws_key
+    - aws_secret
+    - acf_key
+    when:
+      branch: master
+      event: [push, tag, deployment]
+    commands:
+    - RELEASES="latest ${DRONE_COMMIT_SHA}" /entrypoint.sh /publish.sh

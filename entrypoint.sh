@@ -29,7 +29,7 @@ if [ "$zipok" == "0" ]; then
   exit 1
 fi
 
-unzip -o -q /tmp/acf.zip -d wp-content/plugins
+unzip -o -q /tmp/acf.zip -d /var/www/html/wp-content/plugins
 rm /tmp/acf.zip
 
 if [[ "$@" == ""  ]];then
