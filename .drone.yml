@@ -24,3 +24,11 @@ pipeline:
     when:
       branch: master
       event: [push, tag, deployment]
+  publish:
+    image: quay.io/ktbartholomew/teambicyclesinc:${DRONE_COMMIT_SHA}
+    secrets:
+    - aws_key
+    - aws_secret
+    - acf_key
+    commands:
+    - env
