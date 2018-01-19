@@ -31,6 +31,7 @@ pipeline:
     - aws_key
     - aws_secret
     - acf_key
+    entrypoint: /entrypoint.sh
     commands:
     - RELEASE=latest /publish.sh
     - RELEASE=${DRONE_COMMIT_SHA} /publish.sh
