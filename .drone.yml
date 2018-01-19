@@ -26,6 +26,7 @@ pipeline:
       event: [push, tag, deployment]
   publish:
     image: quay.io/ktbartholomew/teambicyclesinc:latest
+    pull: true
     secrets:
     - aws_key
     - aws_secret
